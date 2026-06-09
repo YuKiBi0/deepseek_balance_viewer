@@ -1,17 +1,22 @@
-# deepseek_balance_viewer
+# DeepSeek 余额查看器
 
-A new Flutter project.
+一个低脂小玩意，就只有看 deepseek API 余额这一个功能。
 
-## Getting Started
+输入 API Key → 查看余额
 
-This project is a starting point for a Flutter application.
+主要就是想自己在手机上方便看余额剩多少
 
-A few resources to get you started if this is your first Flutter project:
+#### 食用方法
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```bash
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 去哪拿你的 deepseek API Key
+
+[platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys)
+
+## 许可
+
+MIT，欢迎拿去玩。
