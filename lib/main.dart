@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'api_key_screen.dart';
 import 'home_screen.dart';
+import 'key_edit_screen.dart';
+import 'services/key_store.dart';
 
 void main() {
   runApp(const DeepSeekBalanceApp());
@@ -21,7 +23,7 @@ class DeepSeekBalanceApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => const SplashScreen(),
-        '/apikey': (_) => const ApiKeyScreen(),
+        '/keys': (_) => const ApiKeyScreen(),
         '/home': (_) => const HomeScreen(),
       },
     );
@@ -39,18 +41,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _checkApiKey();
+    _checkKeys();
   }
 
-  Future<void> _checkApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    final apiKey = prefs.getString('deepseek_api_key');
+  Future<void> _checkKeys() async {
+    final keys = await KeyStore().loadKeys();
 
     if (!mounted) return;
-    if (apiKey != null && apiKey.isNotEmpty) {
-      Navigator.of(context).pushReplacementNamed('/home');
+    if (keys.isEmpty) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const KeyEditScreen()),
+      );
     } else {
-      Navigator.of(context).pushReplacementNamed('/apikey');
+      Navigator.of(context).pushReplacementNamed('/home');
     }
   }
 
